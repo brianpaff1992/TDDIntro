@@ -6,13 +6,16 @@ package com.thoughtworks.tddintro.Account;
 public class Account {
     private int amount;
 
-    public Account()
-    {
+    public Account() {
         amount = 0;
     }
 
-    public int deposit(int i)
-    {
+    public int deposit(int i) {
         return amount + i;
+    }
+
+    public int withdraw(int i)
+    {
+        return 0;
     }
 }

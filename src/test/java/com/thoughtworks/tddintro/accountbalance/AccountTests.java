@@ -19,9 +19,10 @@ public class AccountTests {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
 
+        assertThat(account.withdraw(2), is(3));
     }
 
     @Test
