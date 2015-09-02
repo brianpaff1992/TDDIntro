@@ -13,6 +13,6 @@ public class Account {
 
     public int deposit(int i)
     {
-        return 1;
+        return amount + i;
     }
 }
