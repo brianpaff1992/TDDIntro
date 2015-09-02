@@ -17,7 +17,13 @@ public class Account {
 
     public int withdraw(int i)
     {
-        amount = amount - i;
-        return amount;
+        if(amount < i)
+        {
+            return amount;
+        }
+        else {
+            amount = amount - i;
+            return amount;
+        }
     }
 }
