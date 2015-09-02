@@ -11,11 +11,13 @@ public class Account {
     }
 
     public int deposit(int i) {
-        return amount + i;
+        amount = amount +i;
+        return amount;
     }
 
     public int withdraw(int i)
     {
-        return 0;
+        amount = amount - i;
+        return amount;
     }
 }

@@ -22,12 +22,15 @@ public class AccountTests {
     //@Ignore
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
 
+        account.deposit(5);
         assertThat(account.withdraw(2), is(3));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
 
+        account.deposit(3);
+        assertThat(account.withdraw(5), is(3));
     }
 }
