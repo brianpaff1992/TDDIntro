@@ -2,6 +2,7 @@ package com.thoughtworks.tddintro.library;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -14,6 +15,12 @@ import static org.mockito.Mockito.*;
 
 public class LibraryTest {
 
+    List<String> books;
+    private PrintStream printStream;
+    private String title;
+    private Library library;
+    private DateTime time = new DateTime();
+    private DateTimeFormatter dateTimeFormatter;
 
     /*
 
@@ -21,16 +28,24 @@ public class LibraryTest {
 
      */
 
+    @Before
+    public void initialize()
+    {
+        books = new ArrayList<>();
+        title = "Book title";
+        printStream = mock(PrintStream.class);
+
+        time = new DateTime();
+        dateTimeFormatter = mock(DateTimeFormatter.class);
+
+        library = new Library(books, printStream, dateTimeFormatter);
+    }
 
     @Test
     //@Ignore
     public void shouldPrintBookTitleWhenThereIsOneBook() {
 
-        List<String> books = new ArrayList<>();
-        String title = "Book Title";
         books.add(title);
-        PrintStream printStream = mock(PrintStream.class);
-        Library library = new Library(books, printStream, null);
 
         library.listBooks();
 
@@ -42,9 +57,6 @@ public class LibraryTest {
     public void shouldPrintNothingWhenThereAreNoBooks() {
 
         // implement me
-        List<String> books = new ArrayList<>();
-        PrintStream printStream = mock(PrintStream.class);
-        Library library = new Library(books, printStream, null);
 
         library.listBooks();
 
@@ -57,13 +69,9 @@ public class LibraryTest {
 
         // implement me
 
-        List<String> books = new ArrayList<>();
-        String title = "Book Title";
         String title2 = "Book Title 2";
         books.add(title);
         books.add(title2);
-        PrintStream printStream = mock(PrintStream.class);
-        Library library = new Library(books, printStream, null);
 
         library.listBooks();
 
@@ -82,10 +90,6 @@ public class LibraryTest {
     // This one is done for you
     @Test
     public void shouldWelcomeUser() {
-        List<String> books = new ArrayList<>();
-        PrintStream printStream = mock(PrintStream.class);
-        DateTimeFormatter dateTimeFormatter = mock(DateTimeFormatter.class);
-        Library library = new Library(books, printStream, dateTimeFormatter);
 
         // We don't need to mock DateTime because it is a value object
         // We can't mock it because it is a final class
@@ -98,14 +102,8 @@ public class LibraryTest {
 
     @Test
     public void shouldDisplayFormattedTimeWhenFormattedTimeIsAnEmptyString() {
-        List<String> books = new ArrayList<>();
-        PrintStream printStream = mock(PrintStream.class);
-        DateTime time = new DateTime();
-        DateTimeFormatter dateTimeFormatter = mock(DateTimeFormatter.class);
 
         when(dateTimeFormatter.print(time)).thenReturn("");
-
-        Library library = new Library(books, printStream, dateTimeFormatter);
 
         library.welcome(time);
 
@@ -121,14 +119,8 @@ public class LibraryTest {
         // then move common test variables into a setup method
 
         String t = "10:31 PM";
-        List<String> books = new ArrayList<>();
-        PrintStream printStream = mock(PrintStream.class);
-        DateTime time = new DateTime();
-        DateTimeFormatter dateTimeFormatter = mock(DateTimeFormatter.class);
 
         when(dateTimeFormatter.print(time)).thenReturn(t);
-
-        Library library = new Library(books, printStream, dateTimeFormatter);
 
         library.welcome(time);
 
