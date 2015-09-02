@@ -11,8 +11,8 @@ public class Account {
         amount = 0;
     }
 
-    public void deposit(int i)
+    public int deposit(int i)
     {
-
+        return 1;
     }
 }
