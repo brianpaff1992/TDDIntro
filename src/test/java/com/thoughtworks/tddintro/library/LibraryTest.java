@@ -2,6 +2,7 @@ package com.thoughtworks.tddintro.library;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -9,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.contains;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class LibraryTest {
 
@@ -24,6 +23,7 @@ public class LibraryTest {
 
 
     @Test
+    //@Ignore
     public void shouldPrintBookTitleWhenThereIsOneBook() {
 
         List<String> books = new ArrayList<>();
@@ -42,12 +42,34 @@ public class LibraryTest {
     public void shouldPrintNothingWhenThereAreNoBooks() {
 
         // implement me
+        List<String> books = new ArrayList<>();
+        PrintStream printStream = mock(PrintStream.class);
+        Library library = new Library(books, printStream, null);
+
+        library.listBooks();
+
+        verify(printStream, times(0)).println();
     }
 
     @Test
+    //@Ignore
     public void shouldPrintBothBookTitlesWhenThereAreTwoBooks() {
 
         // implement me
+
+        List<String> books = new ArrayList<>();
+        String title = "Book Title";
+        String title2 = "Book Title 2";
+        books.add(title);
+        books.add(title2);
+        PrintStream printStream = mock(PrintStream.class);
+        Library library = new Library(books, printStream, null);
+
+        library.listBooks();
+
+        // add a verify statement here that shows that the book title was printed by to the printStream
+        verify(printStream).println(title);
+        verify(printStream).println(title2);
     }
 
     /*
@@ -88,6 +110,8 @@ public class LibraryTest {
         library.welcome(time);
 
         // add a verify here
+
+        verify(printStream).println("Welcome to the library! The current time is ");
     }
 
     @Test
@@ -95,5 +119,21 @@ public class LibraryTest {
 
         // implement me
         // then move common test variables into a setup method
+
+        String t = "10:31 PM";
+        List<String> books = new ArrayList<>();
+        PrintStream printStream = mock(PrintStream.class);
+        DateTime time = new DateTime();
+        DateTimeFormatter dateTimeFormatter = mock(DateTimeFormatter.class);
+
+        when(dateTimeFormatter.print(time)).thenReturn(t);
+
+        Library library = new Library(books, printStream, dateTimeFormatter);
+
+        library.welcome(time);
+
+        // add a verify here
+
+        verify(printStream).println("Welcome to the library! The current time is " + t);
     }
 }
