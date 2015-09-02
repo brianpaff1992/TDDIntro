@@ -9,12 +9,12 @@ import static org.junit.Assert.assertThat;
 
 public class AccountTests {
 
-    private Account account = new Account();
+    private Account account = new Account(100);
 
     @Test
     public void shouldIncreaseMyBalanceWhenIDepositMoney(){
 
-        assertThat(account.deposit(5), is(5));
+        assertThat(account.deposit(50), is(150));
 
     }
 
@@ -22,15 +22,14 @@ public class AccountTests {
     //@Ignore
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
 
-        account.deposit(5);
-        assertThat(account.withdraw(2), is(3));
+        assertThat(account.withdraw(50), is(50));
     }
 
     @Test
     //@Ignore
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
 
-        account.deposit(3);
-        assertThat(account.withdraw(5), is(3));
+        Account overdrawnAccount = new Account(50);
+        assertThat(overdrawnAccount.withdraw(100), is(50));
     }
 }

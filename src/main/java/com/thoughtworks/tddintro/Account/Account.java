@@ -6,8 +6,8 @@ package com.thoughtworks.tddintro.Account;
 public class Account {
     private int amount;
 
-    public Account() {
-        amount = 0;
+    public Account(int startAmount) {
+        amount = startAmount;
     }
 
     public int deposit(int i) {
