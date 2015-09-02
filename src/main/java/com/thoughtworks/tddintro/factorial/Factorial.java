@@ -9,7 +9,8 @@ public class Factorial {
         }
         else
         {
-            return 2;
+            int oneNumberSmaller = i -1;
+            return i * compute(oneNumberSmaller);
         }
     }
 }
